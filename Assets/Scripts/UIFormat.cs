@@ -11,7 +11,7 @@ public class UIFormat : MonoBehaviour
     public int Balance;
     public int Cash;
 
-    void Start()
+    public void SetMoney()
     {
         BalanceText.text = string.Format("{0:N0}", Balance);
         CashText.text = string.Format("{0:N0}", Cash);
