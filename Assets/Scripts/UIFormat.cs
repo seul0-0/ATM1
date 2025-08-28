@@ -12,7 +12,6 @@ public class UIFormat : MonoBehaviour
     public int Balance;
     public int Cash;
     public UserData userData;
-    
 
     
     void Start()
@@ -26,7 +25,6 @@ public class UIFormat : MonoBehaviour
         BalanceText.text = string.Format("{0:N0}", userData.Balance);
         CashText.text = string.Format("{0:N0}", userData.Cash);
         NameText.text = userData.UserName;
-        
+        GameManager.instance.Save();
     }
-    
 }

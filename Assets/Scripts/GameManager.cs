@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;    
 
 
 
@@ -28,8 +30,27 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         
-        /*
-        userData = new UserData("주슬기", 50000, 100000);
-    */
+
+        if (File.Exists(Application.persistentDataPath + "/UserData.txt"))
+        {
+            Load();
+        }
+        else
+        {
+            userData = new UserData("주슬기", 50000, 100000);
+        }
+    }
+
+    public void Save()
+    {
+        var saveData = JsonUtility.ToJson(userData);
+        
+        File.WriteAllText(Application.persistentDataPath + "/UserData.txt", saveData);
+    }
+
+    public void Load()
+    {
+        var loadData = File.ReadAllText(Application.persistentDataPath + "/UserData.txt");
+        userData = JsonUtility.FromJson<UserData>(loadData);
     }
 }
